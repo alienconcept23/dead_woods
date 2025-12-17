@@ -1,0 +1,7 @@
+Assets folder structure:
+- sprites/: 3x pixel character sprites, animations, and icon sheets
+- tiles/: 64px 3D-rendered environment tiles (exported as textures)
+- music/: soundtrack stems (indie-folk -> hip-hop hybrid)
+- sfx/: footsteps, impacts, UI sounds
+
+I will create initial placeholder pixel art and music stubs in the next step.

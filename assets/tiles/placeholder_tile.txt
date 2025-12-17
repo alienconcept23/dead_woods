@@ -1,0 +1,4 @@
+Placeholder tile texture instructions:
+- Export a 64px tile texture (or 64px x 64px sprite) and save as PNG here.
+- Recommended: make a few variations (ground, cracked, grass) and create a material in Unity to assign to `IsoTilemap.tileMaterial` for quick prototyping.
+- Use Blender/3D render to create 64px environment render and then downscale / pixelate if needed.

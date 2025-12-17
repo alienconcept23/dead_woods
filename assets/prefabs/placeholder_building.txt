@@ -1,0 +1,4 @@
+Placeholder building prefab instructions:
+- Create a simple cube or sprite-based prefab in Unity and save it into `Assets/Prefabs/`.
+- Example: small wall segment or foundation block; will be used by `SnapGridBuilder.placeablePrefab` for snap-placement tests.
+- Ensure it has a collider for placement raycasts to work properly.

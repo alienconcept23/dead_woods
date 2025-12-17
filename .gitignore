@@ -1,0 +1,42 @@
+# Unity generated
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+UserSettings/
+*/Library/*
+*/Temp/*
+*/Obj/*
+*/Build/*
+
+# Visual Studio / MonoDevelop
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# OS generated
+.DS_Store
+._*
+Thumbs.db
+
+# JetBrains Rider
+.idea/
+.idea/*
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Crash reports
+crash-reports/
+
+# Asset Store tools
+AssetStoreTools*

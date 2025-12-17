@@ -1,0 +1,5 @@
+Placeholder player sprite (3x pixel scale):
+
+This is a placeholder image description. Replace with a real 3x pixel sprite exported as PNG into this folder.
+
+Suggested resolution: 48x48 (for 3x 16px base) or 96x96 (3x 32px base). Use Aseprite or Krita and export with transparent background.
