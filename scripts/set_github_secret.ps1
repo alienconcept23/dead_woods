@@ -24,10 +24,12 @@ if ($FromFile) {
     # Read file and base64-encode
     $content = [System.IO.File]::ReadAllBytes($FromFile)
     $b64 = [Convert]::ToBase64String($content)
-    gh secret set $Name --body $b64 --repo "$Owner/$Repo" || ExitWith "Failed to set secret $Name"
+    gh secret set $Name --body $b64 --repo "$Owner/$Repo"
+    if ($LASTEXITCODE -ne 0) { ExitWith "Failed to set secret $Name" }
     Write-Host "Secret $Name set from file (base64 encoded)."
 } elseif ($Value) {
-    gh secret set $Name --body $Value --repo "$Owner/$Repo" || ExitWith "Failed to set secret $Name"
+    gh secret set $Name --body $Value --repo "$Owner/$Repo"
+    if ($LASTEXITCODE -ne 0) { ExitWith "Failed to set secret $Name" }
     Write-Host "Secret $Name set from provided value."
 } else {
     ExitWith "Provide either -FromFile or -Value to set the secret."
