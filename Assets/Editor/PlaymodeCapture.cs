@@ -48,6 +48,66 @@ public class PlaymodeCapture
         Debug.Log($"Capture complete, {frame} frames saved to {outDir}");
     }
 
+    // Editor render-based capture (doesn't require entering play mode). More reliable for automated captures.
+    public static void RunEditorCapture()
+    {
+        var scenePath = "Assets/Scenes/Sample.unity";
+        if (!File.Exists(scenePath))
+        {
+            Debug.LogError("Sample scene not found: " + scenePath);
+            return;
+        }
+
+        EditorSceneManager.OpenScene(scenePath);
+
+        var outDir = Path.Combine(Application.dataPath, "../Captures");
+        Directory.CreateDirectory(outDir);
+
+        Camera cam = Camera.main;
+        bool createdTempCam = false;
+        if (cam == null)
+        {
+            // try find any camera
+            cam = Object.FindObjectOfType<Camera>();
+        }
+        if (cam == null)
+        {
+            // create a temporary camera
+            var go = new GameObject("_TempCaptureCam");
+            cam = go.AddComponent<Camera>();
+            cam.transform.position = new Vector3(0, 10, -10);
+            cam.transform.LookAt(Vector3.zero);
+            createdTempCam = true;
+        }
+
+        int width = 800, height = 600;
+        RenderTexture rt = new RenderTexture(width, height, 24);
+        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+
+        for (int i = 0; i < 10; i++)
+        {
+            // slight camera jitter for multiple frames
+            cam.transform.position += new Vector3(0.1f * i, 0, 0);
+            cam.targetTexture = rt;
+            RenderTexture.active = rt;
+            cam.Render();
+            tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            tex.Apply();
+            byte[] bytes = tex.EncodeToPNG();
+            string fname = Path.Combine(outDir, $"editor_capture_{i:D3}.png");
+            File.WriteAllBytes(fname, bytes);
+            Debug.Log("Saved editor capture: " + fname);
+            cam.targetTexture = null;
+            RenderTexture.active = null;
+        }
+
+        Object.DestroyImmediate(rt);
+        Object.DestroyImmediate(tex);
+        if (createdTempCam) Object.DestroyImmediate(cam.gameObject);
+
+        Debug.Log($"Editor capture complete. Images saved to {outDir}");
+    }
+
     static double _stopTime = 0;
     static int _frame = 0;
     static string _outDir;
