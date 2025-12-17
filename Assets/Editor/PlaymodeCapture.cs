@@ -108,6 +108,12 @@ public class PlaymodeCapture
         Debug.Log($"Editor capture complete. Images saved to {outDir}");
     }
 
+    [MenuItem("Tools/Capture Editor Frames")]
+    public static void MenuCapture()
+    {
+        RunEditorCapture();
+    }
+
     static double _stopTime = 0;
     static int _frame = 0;
     static string _outDir;
