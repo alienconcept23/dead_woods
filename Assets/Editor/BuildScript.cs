@@ -1,5 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 using System.IO;
 
 public static class BuildScript
@@ -16,7 +18,7 @@ public static class BuildScript
         if (!System.IO.File.Exists(sampleScene))
         {
             UnityEngine.Debug.Log("Sample scene not found. Creating sample scene...");
-            var scene = UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEngine.SceneManagement.NewSceneSetup.DefaultGameObjects, UnityEditor.SceneManagement.NewSceneMode.Single);
+            var scene = UnityEditor.SceneManagement.EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
             // Create ground
             var ground = UnityEngine.GameObject.CreatePrimitive(PrimitiveType.Plane);

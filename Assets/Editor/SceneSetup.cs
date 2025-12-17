@@ -8,7 +8,7 @@ public static class SceneSetup
     [MenuItem("IsoSurvival/Create Sample Scene")]
     public static void CreateSampleScene()
     {
-        var scene = EditorSceneManager.NewScene(UnityEngine.SceneManagement.NewSceneSetup.DefaultGameObjects, UnityEditor.SceneManagement.NewSceneMode.Single);
+        var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
 
         // Create ground
         var ground = GameObject.CreatePrimitive(PrimitiveType.Plane);
